@@ -4,11 +4,12 @@ using AcApp = Autodesk.AutoCAD.ApplicationServices.Application;
 using AcApp = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 #endif
 using System.Collections.Generic;
-using mpMsg;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.Geometry;
+using ModPlusAPI;
+using ModPlusAPI.Windows;
 
 namespace mpMultiScale
 {
@@ -17,6 +18,8 @@ namespace mpMultiScale
         [CommandMethod("ModPlus", "mpMultiScale", CommandFlags.UsePickSet)]
         public void Main()
         {
+            Statistic.SendCommandStarting(new Interface());
+
             var doc = AcApp.DocumentManager.MdiActiveDocument;
             var db = doc.Database;
             var ed = doc.Editor;
@@ -100,7 +103,7 @@ namespace mpMultiScale
             } // try
             catch (Exception ex)
             {
-                MpExWin.Show(ex);
+                ExceptionBox.Show(ex);
             }
         }
 
@@ -129,7 +132,7 @@ namespace mpMultiScale
             }
             catch (System.Exception ex)
             {
-                MpExWin.Show(ex);
+                ExceptionBox.Show(ex);
             }
             return list.ToArray();
         }
