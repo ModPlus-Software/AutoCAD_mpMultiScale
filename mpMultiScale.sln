@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpMultiScale_2010", "mpMultiScale_2010\mpMultiScale_2010.csproj", "{58ABAE53-CD45-4F1F-A500-B1335B49D510}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpMultiScale_2017", "mpMultiScale_2017\mpMultiScale_2017.csproj", "{E21DCEB2-0328-486C-9508-068C106BF8D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpMultiScale_2018", "mpMultiScale_2018\mpMultiScale_2018.csproj", "{9C5D887C-9490-4B9A-8EA9-8A49D11F94FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpMultiScale_2019", "mpMultiScale_2019\mpMultiScale_2019.csproj", "{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,8 +65,15 @@ Global
 		{9C5D887C-9490-4B9A-8EA9-8A49D11F94FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C5D887C-9490-4B9A-8EA9-8A49D11F94FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C5D887C-9490-4B9A-8EA9-8A49D11F94FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02E9F55B-AB67-4735-832A-28BBF36EAA9E}
 	EndGlobalSection
 EndGlobal
