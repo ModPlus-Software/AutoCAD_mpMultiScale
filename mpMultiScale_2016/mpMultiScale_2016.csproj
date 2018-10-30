@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\..\..\ModPlus\Functions\mpMultiScale\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\ModPlus\Functions\AutoCAD\mpMultiScale\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\..\..\ModPlus\Functions\mpMultiScale\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\ModPlus\Functions\AutoCAD\mpMultiScale\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="..\mpMultiScale_2013\MpMultiScale.cs">
       <Link>MpMultiScale.cs</Link>
+    </Compile>
+    <Compile Include="..\mpMultiScale_2013\Properties\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="Interface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
