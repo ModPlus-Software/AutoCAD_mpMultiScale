@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpMultiScale_2018", "mpMult
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpMultiScale_2019", "mpMultiScale_2019\mpMultiScale_2019.csproj", "{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpMultiScale_2020", "mpMultiScale_2020\mpMultiScale_2020.csproj", "{F00BAD92-4670-40C4-A152-2BCA783F0020}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D960107-01E8-4EB8-8BDF-137A08E1E6A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F00BAD92-4670-40C4-A152-2BCA783F0020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00BAD92-4670-40C4-A152-2BCA783F0020}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00BAD92-4670-40C4-A152-2BCA783F0020}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00BAD92-4670-40C4-A152-2BCA783F0020}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
