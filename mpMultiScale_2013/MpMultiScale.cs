@@ -1,14 +1,14 @@
-﻿using AcApp = Autodesk.AutoCAD.ApplicationServices.Core.Application;
-using System.Collections.Generic;
-using Autodesk.AutoCAD.EditorInput;
-using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Runtime;
-using Autodesk.AutoCAD.Geometry;
-using ModPlusAPI;
-using ModPlusAPI.Windows;
-
-namespace mpMultiScale
+﻿namespace mpMultiScale
 {
+    using System.Collections.Generic;
+    using Autodesk.AutoCAD.DatabaseServices;
+    using Autodesk.AutoCAD.EditorInput;
+    using Autodesk.AutoCAD.Geometry;
+    using Autodesk.AutoCAD.Runtime;
+    using ModPlusAPI;
+    using ModPlusAPI.Windows;
+    using AcApp = Autodesk.AutoCAD.ApplicationServices.Core.Application;
+
     public class MpMultiScale
     {
         private const string LangItem = "mpMultiScale";
@@ -21,6 +21,7 @@ namespace mpMultiScale
             var doc = AcApp.DocumentManager.MdiActiveDocument;
             var db = doc.Database;
             var ed = doc.Editor;
+
             // Переменная "Копия"
             var isCopy = false;
             try
@@ -33,17 +34,20 @@ namespace mpMultiScale
                     opts.Keywords.Add(Language.GetItem(LangItem, "msg1"));
                     var kws = opts.Keywords.GetDisplayString(true);
                     opts.MessageForAdding = "\n" + Language.GetItem(LangItem, "msg2") + kws;
+
                     // Implement a callback for when keywords are entered
-                    opts.KeywordInput += delegate (object sender, SelectionTextInputEventArgs e)
+                    opts.KeywordInput += (sender, e) =>
                     {
                         if (e.Input.Equals(Language.GetItem(LangItem, "msg1")))
                             isCopy = !isCopy;
                     };
                     var res = ed.GetSelection(opts);
-                    if (res.Status != PromptStatus.OK) return;
+                    if (res.Status != PromptStatus.OK)
+                        return;
                     var selSet = res.Value;
                     var idArr = selSet.GetObjectIds();
-                    if (idArr == null) return;
+                    if (idArr == null)
+                        return;
                     var idArray = isCopy ? SetCopy(idArr) : idArr;
 
                     var doubleOpt = new PromptDoubleOptions("\n" + Language.GetItem(LangItem, "msg3"))
@@ -53,13 +57,15 @@ namespace mpMultiScale
                         AllowZero = false
                     };
                     var doubleRes = ed.GetDouble(doubleOpt);
-                    if (doubleRes.Status != PromptStatus.OK) return;
+                    if (doubleRes.Status != PromptStatus.OK)
+                        return;
 
                     var pdOpt = new PromptKeywordOptions(string.Empty);
                     var sVal = Language.GetItem(LangItem, "kw1"); // Начальное значение
                     pdOpt.AllowArbitraryInput = true;
                     pdOpt.AllowNone = true;
-                    //pdOpt.SetMessageAndKeywords(
+
+                    // pdOpt.SetMessageAndKeywords(
                     //    "\n" + "Выберите базовую точку: " + "<" + sVal +
                     //    ">: " + "[Центр/ЛНиз/ЛВерх/ПНиз/ПВерх/СНиз/СВерх/СЛево/СПраво]",
                     //    "Центр ЛНиз ЛВерх ПНиз ПВерх СНиз СВерх СЛево СПраво");
@@ -85,16 +91,17 @@ namespace mpMultiScale
                         Language.GetItem(LangItem, "kw7") + " " +
                         Language.GetItem(LangItem, "kw8") + " " +
                         Language.GetItem(LangItem, "kw9"));
-                    var promptres = ed.GetKeywords(pdOpt);
-                    if (promptres.Status != PromptStatus.OK) return;
-                    sVal = promptres.StringResult;
+                    var promptResult = ed.GetKeywords(pdOpt);
+                    if (promptResult.Status != PromptStatus.OK)
+                        return;
+                    sVal = promptResult.StringResult;
                     foreach (var objId in idArray)
                     {
                         var ent = (Entity)tr.GetObject(objId, OpenMode.ForWrite);
                         var extPts = ent.GeometricExtents;
                         var pt1 = extPts.MinPoint;
                         var pt3 = extPts.MaxPoint;
-                        var pt = new Point3d();
+                        var pt = default(Point3d);
                         if (sVal.Equals(Language.GetItem(LangItem, "kw1")))
                             pt = new Point3d((pt1.X + pt3.X) / 2, (pt1.Y + pt3.Y) / 2, (pt1.Z + pt3.Z) / 2);
                         else if (sVal.Equals(Language.GetItem(LangItem, "kw2")))
@@ -120,7 +127,7 @@ namespace mpMultiScale
 
                     tr.Commit();
                 }
-            } // try
+            }
             catch (Exception ex)
             {
                 ExceptionBox.Show(ex);
@@ -135,7 +142,7 @@ namespace mpMultiScale
 
             try
             {
-                // Используем транзикцию
+                // Используем транзакцию
                 var tr = db.TransactionManager.StartTransaction();
                 using (tr)
                 {
@@ -145,8 +152,10 @@ namespace mpMultiScale
                         var ent = tr.GetObject(objId, OpenMode.ForWrite).Clone() as Entity;
                         btr.AppendEntity(ent);
                         tr.AddNewlyCreatedDBObject(ent, true);
-                        if (ent != null) list.Add(ent.ObjectId);
+                        if (ent != null)
+                            list.Add(ent.ObjectId);
                     }
+
                     tr.Commit();
                 }
             }
@@ -154,6 +163,7 @@ namespace mpMultiScale
             {
                 ExceptionBox.Show(ex);
             }
+
             return list.ToArray();
         }
     }
