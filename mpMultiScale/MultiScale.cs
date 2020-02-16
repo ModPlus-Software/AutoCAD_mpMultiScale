@@ -9,7 +9,7 @@
     using ModPlusAPI.Windows;
     using AcApp = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 
-    public class MpMultiScale
+    public class MultiScale
     {
         private const string LangItem = "mpMultiScale";
 
@@ -26,7 +26,7 @@
             var isCopy = false;
             try
             {
-                // Используем транзикцию
+                // Используем транзакцию
                 var tr = db.TransactionManager.StartTransaction();
                 using (tr)
                 {
