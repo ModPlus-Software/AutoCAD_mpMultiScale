@@ -16,7 +16,9 @@
         [CommandMethod("ModPlus", "mpMultiScale", CommandFlags.UsePickSet)]
         public void Main()
         {
+#if !DEBUG
             Statistic.SendCommandStarting(new ModPlusConnector());
+#endif
 
             var doc = AcApp.DocumentManager.MdiActiveDocument;
             var db = doc.Database;
@@ -33,7 +35,7 @@
                     var opts = new PromptSelectionOptions();
                     opts.Keywords.Add(Language.GetItem(LangItem, "msg1"));
                     var kws = opts.Keywords.GetDisplayString(true);
-                    opts.MessageForAdding = "\n" + Language.GetItem(LangItem, "msg2") + kws;
+                    opts.MessageForAdding = $"\n{Language.GetItem(LangItem, "msg2")}{kws}";
 
                     // Implement a callback for when keywords are entered
                     opts.KeywordInput += (sender, e) =>
@@ -50,7 +52,7 @@
                         return;
                     var idArray = isCopy ? SetCopy(idArr) : idArr;
 
-                    var doubleOpt = new PromptDoubleOptions("\n" + Language.GetItem(LangItem, "msg3"))
+                    var doubleOpt = new PromptDoubleOptions($"\n{Language.GetItem(LangItem, "msg3")}")
                     {
                         AllowNegative = false,
                         AllowNone = false,
@@ -71,26 +73,8 @@
                     //    "Центр ЛНиз ЛВерх ПНиз ПВерх СНиз СВерх СЛево СПраво");
 
                     pdOpt.SetMessageAndKeywords(
-                        "\n" + Language.GetItem(LangItem, "msg4") + "<" + sVal +
-                        ">: " + "[" +
-                        Language.GetItem(LangItem, "kw1") + "/" +
-                        Language.GetItem(LangItem, "kw2") + "/" +
-                        Language.GetItem(LangItem, "kw3") + "/" +
-                        Language.GetItem(LangItem, "kw5") + "/" +
-                        Language.GetItem(LangItem, "kw4") + "/" +
-                        Language.GetItem(LangItem, "kw6") + "/" +
-                        Language.GetItem(LangItem, "kw7") + "/" +
-                        Language.GetItem(LangItem, "kw8") + "/" +
-                        Language.GetItem(LangItem, "kw9") + "]",
-                        Language.GetItem(LangItem, "kw1") + " " +
-                        Language.GetItem(LangItem, "kw2") + " " +
-                        Language.GetItem(LangItem, "kw3") + " " +
-                        Language.GetItem(LangItem, "kw5") + " " +
-                        Language.GetItem(LangItem, "kw4") + " " +
-                        Language.GetItem(LangItem, "kw6") + " " +
-                        Language.GetItem(LangItem, "kw7") + " " +
-                        Language.GetItem(LangItem, "kw8") + " " +
-                        Language.GetItem(LangItem, "kw9"));
+                        $"\n{Language.GetItem(LangItem, "msg4")}<{sVal}>: [{Language.GetItem(LangItem, "kw1")}/{Language.GetItem(LangItem, "kw2")}/{Language.GetItem(LangItem, "kw3")}/{Language.GetItem(LangItem, "kw5")}/{Language.GetItem(LangItem, "kw4")}/{Language.GetItem(LangItem, "kw6")}/{Language.GetItem(LangItem, "kw7")}/{Language.GetItem(LangItem, "kw8")}/{Language.GetItem(LangItem, "kw9")}]",
+                        $"{Language.GetItem(LangItem, "kw1")} {Language.GetItem(LangItem, "kw2")} {Language.GetItem(LangItem, "kw3")} {Language.GetItem(LangItem, "kw5")} {Language.GetItem(LangItem, "kw4")} {Language.GetItem(LangItem, "kw6")} {Language.GetItem(LangItem, "kw7")} {Language.GetItem(LangItem, "kw8")} {Language.GetItem(LangItem, "kw9")}");
                     var promptResult = ed.GetKeywords(pdOpt);
                     if (promptResult.Status != PromptStatus.OK)
                         return;
